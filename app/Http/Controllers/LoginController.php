@@ -24,6 +24,15 @@ class LoginController extends Controller
         }
 
         return back()->with('LoginError','Gagal Login');
-        dd('Login berhasil');
+    }
+
+    public function logout(){
+        Auth::logout();
+
+        request()->session()->invalidate();
+    
+        request()->session()->regenerateToken();
+    
+        return redirect('/login');
     }
 }
