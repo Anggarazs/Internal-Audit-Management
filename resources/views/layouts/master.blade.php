@@ -249,5 +249,6 @@
     <script src="{{asset('assets/js/demo/datatables-demo.js')}}"></script>
     <script src="{{asset('assets/js/sweetalert2.min.js') }}"></script>
     <script src="{{asset('assets/js/main.js') }}"></script>
+    @stack('script')
     </body>
 </html>

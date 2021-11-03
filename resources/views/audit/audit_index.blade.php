@@ -96,7 +96,63 @@
                 <span aria-hidden="true">&times;</span>
             </button>
             </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-row">
+                      <div class="form-group col-md-6">
+                        <label for="inputEmail4">No Laporan</label>
+                        <input type="email" class="form-control" id="inputEmail4" placeholder="">
+                      </div>
+                      <div class="form-group col-md-6">
+                        <label for="inputPassword4">Judul Laporan</label>
+                        <input type="password" class="form-control" id="inputPassword4" placeholder="">
+                      </div>
+                      <div class="form-group col-md-6">
+                        <label for="inputEmail4">Tipe Audit</label>
+                        <select id="inputState" class="form-control">
+                            <option selected>Choose...</option>
+                            <option>Eksternal</option>
+                            <option>Internal</option>
+                          </select>
+                      </div>
+                      <div class="form-group col-md-6">
+                        <label for="inputPassword4">Auditor</label>
+                        <input type="password" class="form-control" id="inputPassword4" placeholder="">
+                      </div>
+                      <div class="form-group col-md-6">
+                        <label for="inputEmail4">Kriteria Audit</label>
+                        <input type="email" class="form-control" id="inputEmail4" placeholder="">
+                      </div>
+                      <div class="form-group col-md-6">
+                        <label for="inputPassword4">Tahun Audit</label>
+                        <input type="password" class="form-control" id="inputPassword4" placeholder="">
+                      </div>
+                      <div class="form-group col-md-6">
+                        <label for="inputEmail4">Tanggal Mulai</label>
+                        <input type="date" class="form-control" id="inputEmail4" placeholder="">
+                      </div>
+                      <div class="form-group col-md-6">
+                        <label for="inputPassword4">Tanggal Akhir</label>
+                        <input type="date" class="form-control" id="inputPassword4" placeholder="">
+                      </div>
+                    </div>
+                    <div class="form-row">
+                      
+                      <div class="file-upload-wrapper">
+                        <input type="file" id="input-file-max-fs" class="file-upload" data-max-file-size="2M" />
+                      </div>
+                     
+                    </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Clear</button>
+                    <button type="submit" class="btn btn-success">Tambah Data</button>
+                </div>
+              </form>
+            </div>
         </div>
     </div>
 </div>
+@push('script')
+<script>$('.file-upload').file_upload();</script>
+@endpush
 @endsection

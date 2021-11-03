@@ -24,11 +24,11 @@
     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
         <thead>
         <tr>
-            <th >No Laporan Audit</th>
-            <th>Judul Laporan</th>
-            <th>Tipe Audit</th>
-            <th>Auditor</th>
-            <th>Tahun Audit</th>
+            <th>No</th>
+            <th>Audit Report</th>
+            <th>Topic</th>
+            <th>Status</th>
+            <th>Progress</th>
             <th>Kriteria Audit</th>
             <th>Tanggal Mulai</th>
             <th>Tanggal Akhir</th>
