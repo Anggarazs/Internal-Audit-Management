@@ -22,7 +22,7 @@
     <link href="{{asset('assets/vendor/datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
     <!-- Sweetalert styles for this template-->
     <link href="{{asset('assets/css/sweetalert2.min.css')}}" rel="stylesheet">
-
+    @stack('css')
 </head>
 
     <body id="page-top">
