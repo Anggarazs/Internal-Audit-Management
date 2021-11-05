@@ -29,7 +29,7 @@
         <span class="text">Tambah Data Laporan Audit</span>
     </a>
     <div class="table-responsive">
-        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <table class="table table-bordered" id="myTable" width="100%" cellspacing="0">
             <thead>
             <tr class="text-center">
                 <th >No</th>
@@ -37,7 +37,7 @@
                 <th>Judul Laporan</th>
                 <th>Tipe Audit</th>
                 <th>Auditor</th>
-                <th>Kriteria Audit</th>
+                <th>Kriteria Audit</th> 
                 <th>Tahun Audit</th>
                 <th>Tanggal Mulai</th>
                 <th>Tanggal Akhir</th>
@@ -138,9 +138,16 @@
                     </div>
                     <div class="form-row">
                       
-                      <div class="file-upload-wrapper">
-                        <input type="file" id="input-file-max-fs" class="file-upload" data-max-file-size="2M" />
-                      </div>
+                        <form class="box" method="post" action="" enctype="multipart/form-data">
+                            <div class="box__input">
+                              <input class="box__file" type="file" name="files[]" id="file" data-multiple-caption="{count} files selected" multiple />
+                              <label    bel for="file"><strong>Choose a file</strong><span class="box__dragndrop"> or drag it here</span>.</label>
+                              <button class="box__button" type="submit">Upload</button>
+                            </div>
+                            <div class="box__uploading">Uploading…</div>
+                            <div class="box__success">Done!</div>
+                            <div class="box__error">Error! <span></span>.</div>
+                          </form>
                      
                     </div>
                 <div class="modal-footer">
@@ -154,5 +161,12 @@
 </div>
 @push('script')
 <script>$('.file-upload').file_upload();</script>
+<script>
+$(document).ready( function () {
+    $('#myTable').DataTable();
+} );
+</script>
 @endpush
 @endsection
+
+<script src="{{asset('calender/js/jquery.min.js')}}"></script>

@@ -167,7 +167,7 @@
                                         </tbody>
                                     </table>
                                 </div>
-                                <button class="button" id="add-button">Add Event</button>
+                                {{-- <button class="button" id="add-button">Add Event</button> --}}
                             </div>
                         </div>
                         <div class="events-container">
