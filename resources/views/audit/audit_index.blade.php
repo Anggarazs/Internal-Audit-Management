@@ -32,6 +32,7 @@
         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
             <thead>
                 <tr class="text-center">
+                    <th style="display:none">No Audit</th>
                     <th>No Laporan Audit</th>
                     <th>Judul Laporan</th>
                     <th>Tipe Audit</th>
@@ -44,7 +45,7 @@
                     <th>Tanggal Mulai</th>
                     <th>Tanggal Akhir</th>
                     <th>Jumlah Temuan</th>
-                    <th>Evidence</th>
+                    <th>Dokumen Audit</th>
                     <th>Edit</th>
                     <th>Delete</th>
                 </tr>
@@ -53,13 +54,14 @@
     
             @foreach($audit as $list_audit)
                 <tr class="text-center">
+                    <td style="display:none">{{ $list_audit -> no_audit }}</td>
                     <td>{{ $list_audit -> no_laporan_audit }}</td>
                     <td>{{ $list_audit -> judul_audit }}</td>
                     <td>{{ $list_audit -> tipe_audit }}</td>
-                    <td>{{ $list_audit -> jenis_audit }}</td>
+                    <td>{{ $list_audit -> jenis_audit }} </td>
                     <td>{{ $list_audit -> objek}}</td>
                     <td>{{ $list_audit -> auditor }}</td>
-                    <td>{{ $list_audit -> department }}</td>
+                    <td>{{ $list_audit -> nama_department}}  </td>
                     <td>{{ $list_audit -> kriteria_audit }}</td>
                     <td>{{ $list_audit -> tahun_audit }}</td>
                     <td>{{ $list_audit -> tanggal_mulai_audit }}</td>
@@ -77,7 +79,7 @@
                     </a>  
                     </td>
                     <td class="text-center">
-                        <a href="delete_audit/{{$list_audit->no_audit}}" onclick="return confirm('Apakah anda yakin ingin menghapus laporan audit?')" class="btn btn-danger btn-icon-split btn-sm" type="submit">
+                        <a href="delete_audit/{{$list_audit->no_audit}}" id="tombol-hapus" class="btn btn-danger btn-icon-split btn-sm" type="submit">
                             <span class="icon text-white-50">
                                 <i class="fas fa-trash"></i>
                             </span>
@@ -101,7 +103,7 @@
             </button>
             </div>
             <div class="modal-body">
-                <form class="audit" method="POST" action="/insert_audit" enctype="multipart/form-data">
+                <form method="POST" action="/insert_audit" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group row">
                     <div class="col-sm-6">
@@ -145,11 +147,7 @@
                         @enderror
                     </div>
                     <div class="col-sm-6">
-                        <select name="jenis_audit[]" class="selectpicker form-control form-control-user @error('jenis_audit') is-invalid @enderror"  multiple data-live-search="true" placeholder="Pilih Jenis Audit" required>               
-                            @foreach ($jenis_audit as $list_jenis_audit)
-                            <option value="{{$list_jenis_audit->id_jenis_audit}}" @if(in_array($list_jenis_audit->id_jenis_audit,old('jenis_audit',[]))) @endif>{{ $list_jenis_audit->jenis_audit}}</option>
-                            @endforeach               
-                        </select>
+                    <input id="jenis_audit" type="text" class="form-control form-control-user " name="jenis_audit" value="{{ old('jenis_audit') }}" required autocomplete="jenis_audit" placeholder="Jenis Audit">
                          @error('jenis_audit')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -167,7 +165,12 @@
                         @enderror
                     </div>
                     <div class="col-sm-6">
-                        <input id="department" type="text" class="form-control form-control-user"  name="department" value="{{ old('department') }}" required autocomplete="department" placeholder="Department">
+                    <select name="department"  class="form-control  @error('department') is-invalid @enderror" id="department" required>
+                        <option value=""selected >Department</option>
+                            @foreach ($department as $list_depart)
+                            <option value="{{$list_depart->id}}">{{ $list_depart->nama_department}}</option>
+                            @endforeach
+                    </select>
                         @error('department')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -185,7 +188,13 @@
                         @enderror
                     </div>
                     <div class="col-sm-6">
-                        <input id="tahun_audit" type="text" class="form-control form-control-user"  name="tahun_audit" value="{{ old('tahun_audit') }}" required autocomplete="tahun_audit" placeholder="Tahun Audit">
+                        <select name="tahun_audit"  class=" form-control form-control-user @error('tahun_audit') is-invalid @enderror" id="tahun_audit" value="{{ old('tahun_audit') }}" required>
+                            <option value=""selected >Pilih Tahun Audit</option>                 
+                            <option value="2019">2019</option>
+                            <option value="2020">2020</option>      
+                            <option value="2021">2021</option>
+                            <option value="2022">2022</option>              
+                        </select>
                         @error('tahun_audit')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -234,3 +243,4 @@
     </div>
 </div>
 @endsection
+
