@@ -20,7 +20,7 @@ use App\Http\Controllers\AccountController;
 */
 
 Route::get('/', function () {
-    return view('auths.login');
+    return view('login');
 });
 
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
@@ -37,11 +37,14 @@ Route::get('/corrective', [CorrectiveController::class, 'index'])->middleware('a
 
 // Audit Report
 Route::get('/audit', [AuditController::class, 'index_audit'])->middleware('auth');
+Route::post('/insert_audit', [AuditController::class, 'insert_audit']);
+Route::get('/edit_audit/{id}', [AuditController::class, 'edit_audit']);
+Route::post('/edit_audit_process', [AuditController::class, 'edit_audit_process']);
 Route::get('/delete_audit/{id}', [AuditController::class, 'delete_audit']);
 
 // Account Management
 Route::get('/account', [AccountController::class, 'index_account'])->middleware('auth');
 Route::post('/insert_account', [AccountController::class, 'insert_account']);
 Route::get('/edit_account/{id}', [AccountController::class, 'edit_account']);
-Route::post('/edit_account_process', [AccountController::class, 'edit_account_proccess']);
+Route::post('/edit_account_process', [AccountController::class, 'edit_account_process']);
 Route::get('/delete_account/{id}', [AccountController::class, 'delete_account']);
