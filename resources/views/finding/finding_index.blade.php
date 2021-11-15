@@ -113,7 +113,12 @@
                 @csrf
                 <div class="form-group row">
                     <div class="col-sm-6">
-                        <input id="no_laporan_audit" type="text" class="form-control form-control-user"  name="no_laporan_audit" value="{{ old('no_laporan_audit') }}" required autocomplete="no_laporan_audit" placeholder="Nomor Laporan Audit">
+                    <select name="no_laporan_audit"  class="form-control  @error('no_laporan_audit') is-invalid @enderror" id="no_laporan_audit" required>
+                        <option value=""selected >Nomor Laporan Audit</option>
+                            @foreach ($Audit as $item)
+                            <option value="{{$item->no_audit}}">{{ $item->no_laporan_audit}}</option>
+                            @endforeach
+                    </select>
                         @error('no_laporan_audit')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
