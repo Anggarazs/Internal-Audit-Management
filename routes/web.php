@@ -33,8 +33,6 @@ Route::get('/register', [RegisterController::class, 'createDepartment']);
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth');
 
-Route::get('/corrective', [CorrectiveController::class, 'index'])->middleware('auth');
-
 // Audit Report
 Route::get('/audit', [AuditController::class, 'index_audit'])->middleware('auth');
 Route::post('/insert_audit', [AuditController::class, 'insert_audit']);
@@ -48,3 +46,7 @@ Route::post('/insert_account', [AccountController::class, 'insert_account']);
 Route::get('/edit_account/{id}', [AccountController::class, 'edit_account']);
 Route::post('/edit_account_process', [AccountController::class, 'edit_account_process']);
 Route::get('/delete_account/{id}', [AccountController::class, 'delete_account']);
+
+// Corrective Action Monitoring
+Route::get('/finding', [FindingController::class, 'index_finding'])->middleware('auth');
+Route::get('/delete_finding/{id}', [FindingController::class, 'delete_finding']);
